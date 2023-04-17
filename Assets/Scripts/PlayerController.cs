@@ -16,9 +16,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {   
         // Get the Player Input
-        float direction = Input.GetAxisRaw("Horizontal");
+        float speed = Input.GetAxisRaw("Horizontal");
 
         // Set the Player Movement
-        animator.SetFloat("Speed", Mathf.Abs(direction));
+        animator.SetFloat("Speed", Mathf.Abs(speed));
+
+        // Set the Player Direction - Flips the Player Sprite
+        Vector3 scale = transform.localScale;
+        if(speed < 0 && scale.x > 0)
+            scale.x = -1f * scale.x;
+        else if(speed > 0 && scale.x < 0)
+            scale.x = Mathf.Abs(scale.x);
+        transform.localScale = scale;
     }
 }
