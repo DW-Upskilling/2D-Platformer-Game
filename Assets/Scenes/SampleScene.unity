@@ -165,8 +165,11 @@ MonoBehaviour:
   animator: {fileID: 9438349}
   speed: 1
   sprintSpeed: 2
-  jumpForce: 3
+  jumpForce: 10
   crouchForce: 0
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 2147483648
 --- !u!95 &9438349 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6414712969667475084, guid: 49b80c6d4b3988645a4acbc7cd44a0f9,
@@ -210,7 +213,7 @@ GameObject:
   - component: {fileID: 389877988}
   - component: {fileID: 389877987}
   - component: {fileID: 389877986}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Platform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +408,7 @@ GameObject:
   - component: {fileID: 763917155}
   - component: {fileID: 763917156}
   - component: {fileID: 763917157}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +581,7 @@ GameObject:
   - component: {fileID: 1366679006}
   - component: {fileID: 1366679005}
   - component: {fileID: 1366679004}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Platform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +701,7 @@ PrefabInstance:
     - target: {fileID: 3320075600660679641, guid: 49b80c6d4b3988645a4acbc7cd44a0f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 3320075600660679641, guid: 49b80c6d4b3988645a4acbc7cd44a0f9,
         type: 3}
