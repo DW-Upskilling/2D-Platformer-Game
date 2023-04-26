@@ -5,10 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
+    public float speed, sprintSpeed, jumpForce, crouchForce;
+    public LayerMask GroundLayer;
 
-    public float speed, sprintSpeed;
-    public float jumpForce;
-    public float crouchSpeed;
+    private Rigidbody2D rb2d;
+
+    void Awake()
+    {
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,13 +42,14 @@ public class PlayerController : MonoBehaviour
         // Get the Player Sprint Input
         bool sprint = Input.GetButton("Sprint");
 
-        movePlayer(horizontal, sprint);
+        playerMove(horizontal, sprint);
+        playerJump(jump || vertical > 0);
 
-        animator.SetBool("IsCrouch", crouch || vertical < 0);
-        animator.SetBool("IsJump", jump || vertical > 0);
+        // animator.SetBool("IsCrouch", crouch || vertical < 0);
+        // animator.SetBool("IsJump", jump || vertical > 0);
 
     }
-    private void movePlayer(float horizontal, bool sprint)
+    private void playerMove(float horizontal, bool sprint)
     {
         // Set the Player Movement Animation
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
@@ -62,5 +68,19 @@ public class PlayerController : MonoBehaviour
         float currentSpeed = speed * (sprint ? sprintSpeed : 1);
         currentPosition.x += horizontal * currentSpeed * Time.deltaTime;
         transform.position = currentPosition;
+    }
+
+    private void playerJump(bool isJump)
+    {
+
+        bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, GroundLayer);
+
+        // Set the Player Jump Animation
+        animator.SetBool("IsJump", isJump);
+
+        // Set the Player Position
+        if (isJump && isGrounded)
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+        // rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce), ForceMode2D.Force);
     }
 }
