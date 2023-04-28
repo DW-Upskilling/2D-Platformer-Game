@@ -6,13 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     public float speed, sprintSpeed, jumpForce, crouchForce;
-    public LayerMask GroundLayer;
+    public LayerMask EarthLayer;
 
     private Rigidbody2D rb2d;
+
+    private bool isGrounded;
 
     void Awake()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+        isGrounded = false;
     }
 
     // Start is called before the first frame update
@@ -27,6 +30,21 @@ public class PlayerController : MonoBehaviour
 
         playerMovementController();
 
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Earth"))
+        {
+            Debug.Log("Touch the grass");
+            isGrounded = true;
+        }
+    }
+    void OnCollisionExit2D(Collision2D collision) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Earth"))
+        {
+            Debug.Log("Shoulder touch");
+            isGrounded = false;
+        }
     }
 
     public void playerMovementController()
@@ -73,14 +91,14 @@ public class PlayerController : MonoBehaviour
     private void playerJump(bool isJump)
     {
 
-        bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, GroundLayer);
+        //bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, EarthLayer);
 
         // Set the Player Jump Animation
-        animator.SetBool("IsJump", isJump);
+        animator.SetBool("IsJump", isJump && isGrounded);
 
         // Set the Player Position
         if (isJump && isGrounded)
-            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-        // rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce), ForceMode2D.Force);
+            //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+            rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce), ForceMode2D.Force);
     }
 }
