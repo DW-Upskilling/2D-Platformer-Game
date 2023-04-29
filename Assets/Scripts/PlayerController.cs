@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     public float speed, sprintSpeed, jumpForce, crouchForce;
     public LayerMask EarthLayer;
+    public GameObject Void;
 
     private Rigidbody2D rb2d;
 
@@ -31,15 +33,25 @@ public class PlayerController : MonoBehaviour
         playerMovementController();
 
     }
+    void LateUpdate()
+    {
+        if (playerIsDead())
+        {
+            Debug.Log("Noob Died!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 
-    void OnCollisionEnter2D(Collision2D collision) {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Earth"))
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Earth"))
         {
             Debug.Log("Touch the grass");
             isGrounded = true;
         }
     }
-    void OnCollisionExit2D(Collision2D collision) {
+    void OnCollisionExit2D(Collision2D collision)
+    {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Earth"))
         {
             Debug.Log("Shoulder touch");
@@ -92,7 +104,7 @@ public class PlayerController : MonoBehaviour
     {
 
         //bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, EarthLayer);
-
+        // Debug.Log(isJump + "\t" + isGrounded);
         // Set the Player Jump Animation
         animator.SetBool("IsJump", isJump && isGrounded);
 
@@ -100,5 +112,16 @@ public class PlayerController : MonoBehaviour
         if (isJump && isGrounded)
             //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
             rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce), ForceMode2D.Force);
+    }
+
+    private bool playerIsDead()
+    {
+        // Debug.Log(Void.GetComponent<Transform>().position.y + "\t" + transform.position.y);
+        if (Void.GetComponent<Transform>().position.y >= transform.position.y)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
