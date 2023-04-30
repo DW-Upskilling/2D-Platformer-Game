@@ -17,13 +17,12 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        isGrounded = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        isGrounded = false;
     }
 
     // Update is called once per frame
@@ -38,8 +37,13 @@ public class PlayerController : MonoBehaviour
         if (playerIsDead())
         {
             Debug.Log("Noob Died!");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            ResetLevel();
         }
+    }
+
+    public void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -59,7 +63,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void playerMovementController()
+
+    void playerMovementController()
     {
         // Get the Player Input
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -79,7 +84,7 @@ public class PlayerController : MonoBehaviour
         // animator.SetBool("IsJump", jump || vertical > 0);
 
     }
-    private void playerMove(float horizontal, bool sprint)
+    void playerMove(float horizontal, bool sprint)
     {
         // Set the Player Movement Animation
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
@@ -100,7 +105,7 @@ public class PlayerController : MonoBehaviour
         transform.position = currentPosition;
     }
 
-    private void playerJump(bool isJump)
+    void playerJump(bool isJump)
     {
 
         //bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, EarthLayer);
@@ -110,11 +115,11 @@ public class PlayerController : MonoBehaviour
 
         // Set the Player Position
         if (isJump && isGrounded)
-            //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-            rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce), ForceMode2D.Force);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+        // rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce), ForceMode2D.Force);
     }
 
-    private bool playerIsDead()
+    public bool playerIsDead()
     {
         // Debug.Log(Void.GetComponent<Transform>().position.y + "\t" + transform.position.y);
         if (Void.GetComponent<Transform>().position.y >= transform.position.y)

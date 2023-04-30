@@ -16,13 +16,17 @@ public class LevelController : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D collision) {
+    void OnTriggerEnter2D(Collider2D collision)
+    {
         if (
             collision.gameObject.CompareTag("Player") &&
             collision.gameObject.GetComponent<PlayerController>() != null
-           ) {
+           )
+        {
             Debug.Log("Khatam Ho Gayaaa. Only once faskkk");
             Debug.Log("Level Complete. Start the next level");
+
+            collision.gameObject.GetComponent<PlayerController>().ResetLevel();
         }
     }
 
