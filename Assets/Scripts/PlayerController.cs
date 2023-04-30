@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed, sprintSpeed, jumpForce, crouchForce;
     public LayerMask EarthLayer;
     public GameObject Void;
+    public ScoreController scoreController;
 
     private Rigidbody2D rb2d;
 
@@ -129,4 +130,12 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
+
+    public void pickUpKey(GameObject key)
+    {
+        scoreController.incrementScore(1);
+    }
+
 }
+
+
