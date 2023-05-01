@@ -23,8 +23,8 @@ public class LevelController : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>() != null
            )
         {
-            Debug.Log("Khatam Ho Gayaaa. Only once faskkk");
-            Debug.Log("Level Complete. Start the next level");
+            // Debug.Log("Khatam Ho Gayaaa. Only once faskkk");
+            // Debug.Log("Level Complete. Start the next level");
 
             collision.gameObject.GetComponent<PlayerController>().ResetLevel();
         }
