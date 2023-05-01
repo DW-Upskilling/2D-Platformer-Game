@@ -41,22 +41,27 @@ public class PlayerController : MonoBehaviour
     {
         if (playerIsDead())
         {
-            Debug.Log("Noob Died!");
+            // Debug.Log("Noob Died!");
             ResetLevel();
         }
     }
 
     public void ResetLevel()
     {
+        // Save the current scene index as the previous scene index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("previousSceneIndex", currentSceneIndex);
+        PlayerPrefs.Save();
+
         // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Earth"))
         {
-            Debug.Log("Touch the grass");
+            // Debug.Log("Touch the grass");
             isGrounded = true;
         }
     }
@@ -64,7 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Earth"))
         {
-            Debug.Log("Shoulder touch");
+            // Debug.Log("Shoulder touch");
             isGrounded = false;
         }
     }
