@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask EarthLayer;
     public GameObject Void;
     public ScoreController scoreController;
+    public HealthController healthController;
+
+    public GameObject Spawn;
 
     private Rigidbody2D rb2d;
 
@@ -29,6 +32,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("IsHurt", false);
 
         playerMovementController();
 
@@ -134,6 +138,22 @@ public class PlayerController : MonoBehaviour
     public void pickUpKey(GameObject key)
     {
         scoreController.incrementScore(1);
+    }
+
+    public void takeDamage(GameObject enemy)
+    {
+
+        healthController.decrementHealth(1);
+        if (healthController.getHealth() <= 0)
+        {
+            animator.Play("Death");
+            ResetLevel();
+        }
+        else
+        {
+            animator.SetBool("IsHurt", true);
+            transform.position = Spawn.transform.position;
+        }
     }
 
 }
