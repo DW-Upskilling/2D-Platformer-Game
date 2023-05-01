@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
 
     public void ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(2);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
