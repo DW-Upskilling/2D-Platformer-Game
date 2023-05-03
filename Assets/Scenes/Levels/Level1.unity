@@ -1972,7 +1972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1445465059}
   - component: {fileID: 1445465058}
-  - component: {fileID: 1445465060}
+  - component: {fileID: 1445465061}
   m_Layer: 0
   m_Name: TheEnd
   m_TagString: Untagged
@@ -2019,9 +2019,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1445465060
+--- !u!114 &1445465061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2030,7 +2030,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445465057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb17090e3d3edf34cba5db588596ce58, type: 3}
+  m_Script: {fileID: 11500000, guid: 93dbf47c2078fc84bb8b5dd0150a6af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1449826792
@@ -2349,7 +2349,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1837283349 stripped
 Transform:
@@ -2664,12 +2664,12 @@ PrefabInstance:
     - target: {fileID: 3320075600660679641, guid: 49b80c6d4b3988645a4acbc7cd44a0f9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 35.44
       objectReference: {fileID: 0}
     - target: {fileID: 3320075600660679641, guid: 49b80c6d4b3988645a4acbc7cd44a0f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.73
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 3320075600660679641, guid: 49b80c6d4b3988645a4acbc7cd44a0f9,
         type: 3}
