@@ -16,6 +16,8 @@ class LevelManager : MonoBehaviour
         if (instance == null)
         {
             // Clear all PlayerPrefs data
+            // Only for testing if levels unlock as expected
+            // Will be removed if game is published
             PlayerPrefs.DeleteAll();
             instance = this;
             DontDestroyOnLoad(gameObject);
