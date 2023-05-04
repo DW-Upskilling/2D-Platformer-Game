@@ -8,7 +8,7 @@ using TMPro;
 public class LobbyController : MonoBehaviour
 {
     public GameObject mainMenu, levelSelection;
-    public Button startButton, exitButton;
+    public Button startButton, exitButton, backLevelSelection;
     public Button[] levelButtons;
 
     void Awake()
@@ -16,18 +16,16 @@ public class LobbyController : MonoBehaviour
         int lobbySceneIndex = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("lobbySceneIndex", lobbySceneIndex);
         PlayerPrefs.Save();
+
+        startButton.onClick.AddListener(startGame);
+        backLevelSelection.onClick.AddListener(backToMainMenu);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        startButton.onClick.AddListener(startGame);
-    }
 
-    private void startGame()
-    {
-        mainMenu.SetActive(false);
-        levelSelection.SetActive(true);
+
         for (int i = 0; i < levelButtons.Length; i++)
         {
             string levelName = levelButtons[i].GetComponentInChildren<TextMeshProUGUI>().text;
@@ -36,4 +34,15 @@ public class LobbyController : MonoBehaviour
         }
     }
 
+    private void startGame()
+    {
+        mainMenu.SetActive(false);
+        levelSelection.SetActive(true);
+    }
+
+    private void backToMainMenu()
+    {
+        mainMenu.SetActive(true);
+        levelSelection.SetActive(false);
+    }
 }
