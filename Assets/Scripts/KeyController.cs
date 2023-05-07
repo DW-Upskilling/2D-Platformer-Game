@@ -26,6 +26,7 @@ public class KeyController : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().pickUpKey(gameObject);
 
             animator.Play("Collected");
+            AudioManager.Instance.Play("keyPickup");
 
             // Check if the animation has finished playing
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)

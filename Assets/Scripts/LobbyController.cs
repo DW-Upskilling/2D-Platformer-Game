@@ -36,12 +36,14 @@ public class LobbyController : MonoBehaviour
 
     private void startGame()
     {
+        AudioManager.Instance.Play("buttonClick");
         mainMenu.SetActive(false);
         levelSelection.SetActive(true);
     }
 
     private void backToMainMenu()
     {
+        AudioManager.Instance.Play("buttonClick");
         mainMenu.SetActive(true);
         levelSelection.SetActive(false);
     }

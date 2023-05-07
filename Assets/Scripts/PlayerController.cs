@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         isGrounded = false;
+
+        AudioManager audioManager = AudioManager.Instance;
+        audioManager.Play("playerFootstep");
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
     }
     void LateUpdate()
     {
+        AudioManager.Instance.Play("playerFootstep", false);
         if (playerIsDead())
         {
             // Debug.Log("Noob Died!");
@@ -97,6 +101,11 @@ public class PlayerController : MonoBehaviour
     }
     void playerMove(float horizontal, bool sprint)
     {
+        if (horizontal == 0)
+            AudioManager.Instance.Play("playerFootstep", false);
+        else
+            AudioManager.Instance.Play("playerFootstep", true);
+
         // Set the Player Movement Animation
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         animator.SetBool("IsSprint", sprint);
@@ -114,6 +123,7 @@ public class PlayerController : MonoBehaviour
         float currentSpeed = speed * (sprint ? sprintSpeed : 1);
         currentPosition.x += horizontal * currentSpeed * Time.deltaTime;
         transform.position = currentPosition;
+
     }
 
     void playerJump(bool isJump)
@@ -126,8 +136,13 @@ public class PlayerController : MonoBehaviour
 
         // Set the Player Position
         if (isJump && isGrounded)
+        {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-        // rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce), ForceMode2D.Force);
+            // rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce), ForceMode2D.Force);
+
+            // AudioManager.Instance.Play("playerJump");
+        }
+
     }
 
     public bool playerIsDead()
