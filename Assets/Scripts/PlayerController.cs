@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
     }
     void LateUpdate()
     {
-        AudioManager.Instance.Play("playerFootstep", false);
         if (playerIsDead())
         {
             // Debug.Log("Noob Died!");
@@ -52,6 +51,9 @@ public class PlayerController : MonoBehaviour
 
     public void ResetLevel()
     {
+
+        AudioManager.Instance.Play("playerFootstep", false);
+
         // Save the current scene index as the previous scene index
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("previousSceneIndex", currentSceneIndex);
