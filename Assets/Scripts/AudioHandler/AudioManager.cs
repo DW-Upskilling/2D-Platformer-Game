@@ -68,7 +68,15 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name)
     {
+        Debug.Log("Play(string name):: " + name);
         Sound s = Array.Find(soundsList, s => s.name == name);
         s.source.Play();
+    }
+
+    public void Play(string name, bool isEnable)
+    {
+        Debug.Log("Play(string name, Boolean isEnable)" + name);
+        Sound s = Array.Find(soundsList, s => s.name == name);
+        s.source.enabled = isEnable;
     }
 }

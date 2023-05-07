@@ -2040,8 +2040,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: backgroundMusic
     clip: {fileID: 8300000, guid: 0651b56880a11ef45909b779443691aa, type: 3}
-    volume: 0.6
-    pitch: 1
+    volume: 0.08
+    pitch: 0.6
     priority: 128
     loop: 1
     mute: 0
@@ -2052,6 +2052,38 @@ MonoBehaviour:
     pitch: 1
     priority: 129
     loop: 0
+    mute: 0
+    source: {fileID: 0}
+  - name: playerFootstep
+    clip: {fileID: 8300000, guid: 234b586e812e70b419affbe33e30dcfe, type: 3}
+    volume: 1
+    pitch: 1
+    priority: 128
+    loop: 1
+    mute: 0
+    source: {fileID: 0}
+  - name: deathBackgroundMusic
+    clip: {fileID: 8300000, guid: 31b2284e8ab3f244182080ca7da474b7, type: 3}
+    volume: 1
+    pitch: 1
+    priority: 129
+    loop: 1
+    mute: 0
+    source: {fileID: 0}
+  - name: playerJump
+    clip: {fileID: 8300000, guid: e5cb0976ee7cf93489107ede5175519b, type: 3}
+    volume: 1
+    pitch: 1
+    priority: 129
+    loop: 1
+    mute: 0
+    source: {fileID: 0}
+  - name: enemyFootstep
+    clip: {fileID: 8300000, guid: e3e14f5214ce41a49956b747e78f4978, type: 3}
+    volume: 0.1
+    pitch: 0.58
+    priority: 129
+    loop: 1
     mute: 0
     source: {fileID: 0}
 --- !u!4 &1442751661
