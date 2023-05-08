@@ -62,4 +62,9 @@ public class EnemyController : MonoBehaviour
             player.takeDamage(gameObject);
         }
     }
+
+    void OnDestroy()
+    {
+        AudioManager.Instance.Play("enemyFootstep", false);
+    }
 }

@@ -2064,9 +2064,9 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: deathBackgroundMusic
     clip: {fileID: 8300000, guid: 31b2284e8ab3f244182080ca7da474b7, type: 3}
-    volume: 1
-    pitch: 1
-    priority: 129
+    volume: 0.08
+    pitch: 0.6
+    priority: 128
     loop: 1
     mute: 0
     source: {fileID: 0}
