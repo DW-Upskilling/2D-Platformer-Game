@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
-    private bool isGrounded;
+    private int isGrounded;
+    private float currentSprintSpeed;
 
     void Awake()
     {
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isGrounded = false;
+        isGrounded = -1;
 
         AudioManager audioManager = AudioManager.Instance;
         audioManager.Play("playerFootstep");
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Earth"))
         {
             // Debug.Log("Touch the grass");
-            isGrounded = true;
+            isGrounded = -1;
         }
     }
     void OnCollisionExit2D(Collision2D collision)
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Earth"))
         {
             // Debug.Log("Shoulder touch");
-            isGrounded = false;
+            isGrounded += 1;
         }
     }
 
@@ -122,7 +123,16 @@ public class PlayerController : MonoBehaviour
 
         // Set the Player Movement
         Vector3 currentPosition = transform.position;
-        float currentSpeed = speed * (sprint ? sprintSpeed : 1);
+        if (sprint && currentSprintSpeed < sprintSpeed)
+        {
+            currentSprintSpeed += 1;
+        }
+        else
+        {
+            currentSprintSpeed = sprintSpeed;
+        }
+
+        float currentSpeed = speed * (sprint ? currentSprintSpeed : 1);
         currentPosition.x += horizontal * currentSpeed * Time.deltaTime;
         transform.position = currentPosition;
 
@@ -131,18 +141,22 @@ public class PlayerController : MonoBehaviour
     void playerJump(bool isJump)
     {
 
+        // Player can double jump now
+        bool canJump = isJump && isGrounded <= 1;
+
         //bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, EarthLayer);
         // Debug.Log(isJump + "\t" + isGrounded);
         // Set the Player Jump Animation
-        animator.SetBool("IsJump", isJump && isGrounded);
+        animator.SetBool("IsJump", canJump);
 
         // Set the Player Position
-        if (isJump && isGrounded)
+        if (canJump)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
             // rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce), ForceMode2D.Force);
 
             // AudioManager.Instance.Play("playerJump");
+            isGrounded += 1;
         }
 
     }

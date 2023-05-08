@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 9438349}
   speed: 1
-  sprintSpeed: 2
+  sprintSpeed: 6
   jumpForce: 8
   crouchForce: 0
   EarthLayer:
@@ -672,6 +672,7 @@ GameObject:
   - component: {fileID: 511052359}
   - component: {fileID: 511052358}
   - component: {fileID: 511052357}
+  - component: {fileID: 511052361}
   m_Layer: 5
   m_Name: CanvasGameComplete
   m_TagString: Untagged
@@ -763,6 +764,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!81 &511052361
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511052356}
+  m_Enabled: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
